@@ -33,9 +33,13 @@ if (MSVC)
 endif()
 
 
-add_library(expat STATIC ${SOURCES} ${HEADERS})
+add_library(expat-static STATIC ${SOURCES} ${HEADERS})
+
+target_compile_definitions(expat-static
+	PUBLIC XML_STATIC
+)
 
 # When a project links to expat, make expat.h directly available
-target_include_directories(expat SYSTEM
+target_include_directories(expat-static SYSTEM
 	INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}
 )
